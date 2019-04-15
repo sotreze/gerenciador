@@ -11,16 +11,18 @@
 </head>
 <body>
 
-<form action="${linkEntradaServlet}" method="post">
+	<c:import url="logout-parcial.jsp" />
 
-	Nome: <input type="text" name="nome" value="${empresa.nome}">
+	<form action="${linkEntradaServlet}" method="post">
 	
-	Data de abertura: <input type="text" name="data" value="<fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/>" />
-	<input type="hidden" name="id" value="${empresa.id}" />
-	<input type="hidden" name="acao" value="AlteraEmpresa" />
-	<input type="submit" />
-
-</form>
+		Nome: <input type="text" name="nome" value="${empresa.nome}">
+		
+		Data de abertura: <input type="text" name="data" value="<fmt:formatDate value="${empresa.dataAbertura}" pattern="dd/MM/yyyy"/>" />
+		<input type="hidden" name="id" value="${empresa.id}" />
+		<input type="hidden" name="acao" value="AlteraEmpresa" />
+		<input type="submit" />
+	
+	</form>
 
 </body>
 </html>
