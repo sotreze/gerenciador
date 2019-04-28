@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import br.com.alura.gerenciador.acao.Acao;
 
 
-@WebServlet(urlPatterns="/entrada")
+//@WebServlet(urlPatterns="/entrada")
 public class UnicaEntradaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -22,34 +22,34 @@ public class UnicaEntradaServlet extends HttpServlet {
 		
 		String paraAcao = request.getParameter("acao");
 		
-		HttpSession sessao = request.getSession();
-		boolean usuarioNaoEstaLogado = (sessao.getAttribute("usuarioLogado") == null);
-		boolean ehUmaAcaoProtegida = !(paraAcao.equals("Login") || paraAcao.equals("LoginForm"));
+//		HttpSession sessao = request.getSession();
+//		boolean usuarioNaoEstaLogado = (sessao.getAttribute("usuarioLogado") == null);
+//		boolean ehUmaAcaoProtegida = !(paraAcao.equals("Login") || paraAcao.equals("LoginForm"));
+//		
+//		if(ehUmaAcaoProtegida && usuarioNaoEstaLogado) {
+//			response.sendRedirect("entrada?acao=LoginForm");
+//			return;
+//		}
 		
-		if(ehUmaAcaoProtegida && usuarioNaoEstaLogado) {
-			response.sendRedirect("entrada?acao=LoginForm");
-			return;
-		}
 		
-		
-		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paraAcao;
-		
-		String nome;
-		try {
-			Class classe = Class.forName(nomeDaClasse); //carrega a classe com o nome
-			Acao acao = (Acao) classe.newInstance();
-			nome = acao.executa(request, response);
-		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			throw new ServletException(e);
-		}
-		
-		String[] tipoEEndereco = nome.split(":");
-		if(tipoEEndereco[0].contentEquals("forward")) {
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipoEEndereco[1]);
-			rd.forward(request, response);
-		} else {
-			response.sendRedirect(tipoEEndereco[1]);
-		}
+//		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paraAcao;
+//		
+//		String nome;
+//		try {
+//			Class classe = Class.forName(nomeDaClasse); //carrega a classe com o nome
+//			Acao acao = (Acao) classe.newInstance();
+//			nome = acao.executa(request, response);
+//		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+//			throw new ServletException(e);
+//		}
+//		
+//		String[] tipoEEndereco = nome.split(":");
+//		if(tipoEEndereco[0].contentEquals("forward")) {
+//			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipoEEndereco[1]);
+//			rd.forward(request, response);
+//		} else {
+//			response.sendRedirect(tipoEEndereco[1]);
+//		}
 		
 //		String nome = null;
 //		if(paraAcao.equals("ListaEmpresas")) {
